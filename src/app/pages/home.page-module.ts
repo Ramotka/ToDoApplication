@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MyListPage } from './my-list.page';
-import { DateComponentModule } from '../../../projects/date/src/lib/adapters/primary/ui/date.component-module';
+import { HomePage } from './home.page';
+import { DateComponentModule } from '@date';
 
 @NgModule({ imports: [CommonModule, 
       RouterModule.forChild([
         {
           path: '',
-          component: MyListPage,
+          component: HomePage,
         }
       ]),
   DateComponentModule
 ],
-  	declarations: [MyListPage],
+  	declarations: [HomePage],
   	providers: [],
   	exports: [] })
-export class MyListPageModule {
+export class HomePageModule {
 }
