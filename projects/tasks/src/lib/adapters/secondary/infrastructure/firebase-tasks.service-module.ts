@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FirebaseTasksService } from './firebase-tasks.service';
 import { ADDS_TASK_DTO } from '../../../application/ports/secondary/adds-task.dto-port';
 

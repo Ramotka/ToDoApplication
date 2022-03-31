@@ -6,3 +6,8 @@
     <button class="btn text-white">Add task</button>
     <a class="btn text-dark bg-white border-dark" routerLink="/" role="button">Cancel</a>
 </div>
+
+<form [formGroup]="createTask" (ngSubmit)="onCreateTaskSubmited(createTask)">
+    <input type="text" formControlName="task" placeholder="Task">
+    <input type="submit" value="Submit">
+</form>
