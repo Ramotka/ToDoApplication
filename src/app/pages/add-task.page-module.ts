@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MyListPage } from './my-list.page';
+import { AddTaskPage } from './add-task.page';
 import { DateComponentModule } from '@date';
 import { PhotosListComponentModule } from '@photos';
-import { FirebaseTasksServiceModule } from '@tasks';
-import { TasksListViewComponentModule } from '@tasks';
-
+import { TasksListViewComponentModule, FirebaseTasksServiceModule, AddTaskComponentModule } from '@tasks';
 
 @NgModule({ imports: [CommonModule, 
       RouterModule.forChild([
         {
           path: '',
-          component: MyListPage,
+          component: AddTaskPage,
         }
       ]),
   DateComponentModule,
   PhotosListComponentModule,
+  TasksListViewComponentModule,
   FirebaseTasksServiceModule,
-  TasksListViewComponentModule
+  AddTaskComponentModule
 ],
-  	declarations: [MyListPage],
+  	declarations: [AddTaskPage],
   	providers: [],
   	exports: [] })
-export class MyListPageModule {
+export class AddTaskPageModule {
 }

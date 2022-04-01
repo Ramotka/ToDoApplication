@@ -1,8 +1,8 @@
-<div class="container mt-5 mb-5" id="tasks-container">
-    <form class="form-floating mb-3" [formGroup]="createTask" (ngSubmit)="onCreateTaskSubmited(createTask)">
+<div class="container mt-5">
+    <form class="form-floating" [formGroup]="createTask" (ngSubmit)="onCreateTaskSubmited(createTask)">
         <input class="form-control w-50" type="text" formControlName="task" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">
             <label for="floatingTextarea2">Write a task here</label>
         <input class="btn text-white mt-2" type="submit" value="Add task" [disabled]="createTask.invalid">
-        <a class="btn text-dark bg-white border-dark mt-2" routerLink="/" role="button">Cancel</a>
+        <a class="btn text-dark bg-white border-dark mt-2" routerLink="/my-list" role="button">Cancel</a>
     </form>
 </div>
