@@ -1,5 +1,8 @@
 <div class="container pt-5 pb-5 border-bottom">
-    <ul>
-        <li *ngFor="let task of tasksList$ | async">{{ task.task }}</li>
-    </ul>
+    <div class="form-check" *ngFor="let task of tasksList$ | async">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label  class="form-check-label" for="flexCheckDefault">
+            {{ task.task }}
+        </label>
+    </div>
 </div>
