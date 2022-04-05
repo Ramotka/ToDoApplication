@@ -1,4 +1,6 @@
 <div class="container border-bottom">
         <p class="d-inline fs-3">TODAY </p>
-        <p class="d-inline fs-5">Data</p>
+        <p class="d-inline fs-5">{{ (todayDate$ | async)?.currentDate | date: "E d MMM" }}</p>
+        <p class="d-inline fs-5 text-danger">{{ dateToday | date: "E d MMM"  }}</p>
+        <!-- Ktora wersja lepsza? -->
 </div>
