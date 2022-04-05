@@ -16,6 +16,4 @@ export class DateComponent {
   todayDate$: Observable<DateDTO> = of({
     currentDate: new Date(),
   });
-  //   Ktora wersja lespza?
-  dateToday = new Date();
 }
