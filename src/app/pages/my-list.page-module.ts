@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { MyListPage } from "./my-list.page";
-import { DateComponentModule } from "@date";
+import { DateComponentModule, DateServiceModule } from "@date";
 import { FirebaseTasksServiceModule } from "@tasks";
 import { TasksListViewComponentModule } from "@tasks";
 
@@ -18,6 +18,7 @@ import { TasksListViewComponentModule } from "@tasks";
     DateComponentModule,
     FirebaseTasksServiceModule,
     TasksListViewComponentModule,
+    DateServiceModule,
   ],
   declarations: [MyListPage],
   providers: [],

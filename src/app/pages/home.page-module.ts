@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { HomePage } from "./home.page";
-import { DateComponentModule } from "@date";
+import { DateComponentModule, DateServiceModule } from "@date";
 import { PhotosListComponentModule } from "@photos";
 import { FirebasePhotosServiceModule } from "@photos";
 
@@ -18,6 +18,7 @@ import { FirebasePhotosServiceModule } from "@photos";
     DateComponentModule,
     PhotosListComponentModule,
     FirebasePhotosServiceModule,
+    DateServiceModule,
   ],
   declarations: [HomePage],
   providers: [],
