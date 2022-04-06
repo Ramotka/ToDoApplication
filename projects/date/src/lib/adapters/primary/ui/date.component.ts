@@ -2,9 +2,14 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  Inject,
 } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { DateDTO } from "../../../application/ports/secondary/date.dto";
+import {
+  GETS_ALL_DATE_DTO,
+  GetsAllDateDtoPort,
+} from "../../../application/ports/secondary/gets-all-date.dto-port";
 
 @Component({
   selector: "lib-date",
@@ -13,7 +18,9 @@ import { DateDTO } from "../../../application/ports/secondary/date.dto";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateComponent {
-  todayDate$: Observable<DateDTO> = of({
-    currentDate: new Date(),
-  });
+  currentDate$: Observable<DateDTO> = this._getsAllDateDto.getAll();
+
+  constructor(
+    @Inject(GETS_ALL_DATE_DTO) private _getsAllDateDto: GetsAllDateDtoPort
+  ) {}
 }
