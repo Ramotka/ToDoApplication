@@ -10,10 +10,17 @@ import {
   GETS_ALL_TASK_DTO,
   GetsAllTaskDtoPort,
 } from "../../../application/ports/secondary/gets-all-task.dto-port";
+import { BsDropdownConfig } from "ngx-bootstrap/dropdown";
 
 @Component({
   selector: "lib-tasks-list-view",
   templateUrl: "./tasks-list-view.component.html",
+  providers: [
+    {
+      provide: BsDropdownConfig,
+      useValue: { isAnimated: true, autoClose: true },
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
