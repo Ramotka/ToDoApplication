@@ -134,6 +134,18 @@ firebase/messaging
 
 firebase/remote-config
 
+ngx-bootstrap/component-loader
+MIT
+
+ngx-bootstrap/dropdown
+MIT
+
+ngx-bootstrap/positioning
+MIT
+
+ngx-bootstrap/utils
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
