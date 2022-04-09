@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MyListPageModule } from './pages/my-list.page-module';
 import { HomePageModule } from './pages/home.page-module';
 import { AddTaskPageModule } from './pages/add-task.page-module';
+import { FirstTaskPageModule } from './pages/first-task.page-module';
 
 const routes: Routes = [{ 
         path: 'my-list', 
@@ -15,6 +16,10 @@ const routes: Routes = [{
   { 
         path: 'add-task', 
         loadChildren: () => AddTaskPageModule
+      },
+  { 
+        path: 'first-task', 
+        loadChildren: () => FirstTaskPageModule
       }
 ];
 

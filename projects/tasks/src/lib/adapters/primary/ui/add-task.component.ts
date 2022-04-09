@@ -9,6 +9,7 @@ import {
   ADDS_TASK_DTO,
   AddsTaskDtoPort,
 } from "../../../application/ports/secondary/adds-task.dto-port";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "lib-add-task",
@@ -17,17 +18,22 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTaskComponent {
-  readonly createTask: FormGroup = new FormGroup({ task: new FormControl('', [Validators.required]) });
+  readonly createTask: FormGroup = new FormGroup({
+    task: new FormControl("", [Validators.required]),
+  });
 
-  constructor(@Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort) {}
+  constructor(
+    @Inject(ADDS_TASK_DTO) private _addsTaskDto: AddsTaskDtoPort,
+    private router: Router
+  ) {}
 
   onCreateTaskSubmited(createTask: FormGroup): void {
     if (createTask.invalid) {
       return;
     }
     this._addsTaskDto.add({
-      task: createTask?.get('task')?.value,
+      task: createTask?.get("task")?.value,
     });
-    this.createTask.reset();
+    this.router.navigate(["/my-list"]);
   }
 }
