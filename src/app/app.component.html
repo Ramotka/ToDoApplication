@@ -1,8 +1,12 @@
-<header>
-  <div class="container-flex fs-6 py-3 ps-5" id="colorHeader">
-    <a class="text-decoration-none text-white" routerLink="/">RAMOTKA's TO-DO APP</a>
+
+  <header class="d-flex py-3 fs-5 justify-content-center bg-special">
+    <div class="w-75">
+      <a class="text-decoration-none text-white" routerLink="/">RAMOTKA's TO-DO APP</a>
+    </div>
+  </header>
+
+  <div class="d-flex justify-content-center vh-100">
+    <div class="w-75">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</header>
-<div class="container-flex">
-    <router-outlet></router-outlet>
-</div>
