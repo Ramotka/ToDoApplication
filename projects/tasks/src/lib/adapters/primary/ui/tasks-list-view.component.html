@@ -8,9 +8,9 @@
         <div class="btn-group" dropdown>
             <button id="button-animated" dropdownToggle type="button" class="btn bg-white fw-bold" aria-controls="dropdown-animated">...</button>
                 <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-animated">
-                    <li role="menuitem"><a class="dropdown-item" href="#">Delete task</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="#">Delete task</a></li>
-                    <li role="menuitem"><a class="dropdown-item" href="#">Delete task</a></li>
+                    <li role="menuitem"><button type="submit" class="dropdown-item" (click)="onDeleteTaskClicked(task)">Delete task</button></li>
+                    <li role="menuitem"><button type="submit" class="dropdown-item" (click)="onDeleteTaskClicked(task)">Delete task</button></li>
+                    <li role="menuitem"><button type="submit" class="dropdown-item" (click)="onDeleteTaskClicked(task)">Delete task</button></li>
                 </ul>
         </div>
 
