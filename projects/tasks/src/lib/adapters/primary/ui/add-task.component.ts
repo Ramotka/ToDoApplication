@@ -32,7 +32,7 @@ export class AddTaskComponent {
       return;
     }
     this._addsTaskDto.add({
-      task: createTask?.get("task")?.value,
+      name: createTask?.get("task")?.value,
     });
     this.router.navigate(["/my-list"]);
   }

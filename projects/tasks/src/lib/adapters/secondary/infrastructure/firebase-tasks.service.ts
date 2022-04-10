@@ -7,10 +7,15 @@ import { TaskDTO } from "../../../application/ports/secondary/task.dto";
 import { GetsAllTaskDtoPort } from "../../../application/ports/secondary/gets-all-task.dto-port";
 import { filterByCriterion } from "@lowgular/shared";
 import { RemovesTaskDtoPort } from "../../../application/ports/secondary/removes-task.dto-port";
+import { SetsTaskDtoPort } from "../../../application/ports/secondary/sets-task.dto-port";
 
 @Injectable()
 export class FirebaseTasksService
-  implements AddsTaskDtoPort, GetsAllTaskDtoPort, RemovesTaskDtoPort {
+  implements
+    AddsTaskDtoPort,
+    GetsAllTaskDtoPort,
+    RemovesTaskDtoPort,
+    SetsTaskDtoPort {
   constructor(private _client: AngularFirestore) {}
 
   add(task: Partial<TaskDTO>): void {
@@ -26,5 +31,9 @@ export class FirebaseTasksService
 
   remove(id: string): void {
     this._client.doc("tasks/" + id).delete();
+  }
+
+  set(task: Partial<TaskDTO>): void {
+    this._client.doc("tasks/" + task.id).update(task);
   }
 }

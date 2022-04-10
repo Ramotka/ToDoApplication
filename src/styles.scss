@@ -10,15 +10,7 @@
     background-color: #7749F8;
 }
 
-input[type='checkbox']:hover {
+.hover:hover {
     background-color: #DEE2E6;
     cursor:pointer;
-}
-
-input[type='checkbox']:checked {
-    background-color: #198754;
-}
-
-input[type='checkbox']:checked+label {
-    text-decoration: line-through;
 }
