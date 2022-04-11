@@ -6,7 +6,7 @@ import {
   Inject,
   TemplateRef,
 } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { TaskDTO } from "../../../application/ports/secondary/task.dto";
 import {
   GETS_ALL_TASK_DTO,
@@ -35,7 +35,13 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksListViewComponent {
-  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
+  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto
+    .getAll()
+    .pipe(
+      map((tasksList: TaskDTO[]) =>
+        tasksList.sort((a, b) => a.date - b.date).reverse()
+      )
+    );
 
   constructor(
     private modalService: BsModalService,

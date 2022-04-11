@@ -33,6 +33,7 @@ export class AddTaskComponent {
     }
     this._addsTaskDto.add({
       name: createTask?.get("task")?.value,
+      date: new Date().getTime(),
     });
     this.router.navigate(["/my-list"]);
   }
