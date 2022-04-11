@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
+  TemplateRef,
 } from "@angular/core";
 import { Observable } from "rxjs";
 import { TaskDTO } from "../../../application/ports/secondary/task.dto";
@@ -19,6 +20,7 @@ import {
   SETS_TASK_DTO,
   SetsTaskDtoPort,
 } from "../../../application/ports/secondary/sets-task.dto-port";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: "lib-tasks-list-view",
@@ -36,6 +38,7 @@ export class TasksListViewComponent {
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll();
 
   constructor(
+    private modalService: BsModalService,
     @Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort,
     @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort,
     @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort
@@ -59,5 +62,20 @@ export class TasksListViewComponent {
         done: true,
       });
     }
+  }
+
+  modalRef?: BsModalRef;
+  message?: string;
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: "modal-md" });
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
   }
 }
