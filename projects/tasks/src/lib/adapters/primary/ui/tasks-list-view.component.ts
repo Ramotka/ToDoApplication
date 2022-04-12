@@ -54,7 +54,7 @@ export class TasksListViewComponent {
     this._removesTaskDto.remove("" + task.id);
   }
 
-  onTaskDoneChangeed(task: Partial<TaskDTO>): void {
+  onTaskDoneChanged(task: Partial<TaskDTO>): void {
     if (task.done) {
       this._setsTaskDto.set({
         id: task.id,
