@@ -1,4 +1,6 @@
 import { BsDropdownConfig } from "ngx-bootstrap/dropdown";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { Router } from "@angular/router";
 import {
   Component,
   ViewEncapsulation,
@@ -6,7 +8,8 @@ import {
   Inject,
   TemplateRef,
 } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable } from "rxjs";
+import { map, tap } from "rxjs/operators";
 import { TaskDTO } from "../../../application/ports/secondary/task.dto";
 import {
   GETS_ALL_TASK_DTO,
@@ -20,7 +23,6 @@ import {
   SETS_TASK_DTO,
   SetsTaskDtoPort,
 } from "../../../application/ports/secondary/sets-task.dto-port";
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: "lib-tasks-list-view",
@@ -35,23 +37,28 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksListViewComponent {
-  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto
-    .getAll()
-    .pipe(
-      map((tasksList: TaskDTO[]) =>
+  tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll().pipe(
+    map(
+      (tasksList: TaskDTO[]) =>
         tasksList.sort((a, b) => a.date - b.date).reverse()
-      )
-    );
+    )
+  );
 
   constructor(
     private modalService: BsModalService,
+    private router: Router,
     @Inject(GETS_ALL_TASK_DTO) private _getsAllTaskDto: GetsAllTaskDtoPort,
     @Inject(REMOVES_TASK_DTO) private _removesTaskDto: RemovesTaskDtoPort,
     @Inject(SETS_TASK_DTO) private _setsTaskDto: SetsTaskDtoPort
   ) {}
 
-  onDeleteTaskClicked(task: Partial<TaskDTO>): void {
-    this._removesTaskDto.remove("" + task.id);
+  onDeleteTaskClicked(task: Partial<TaskDTO>, tasksList: TaskDTO[]): void {
+    if (tasksList.length > 1) {
+      this._removesTaskDto.remove("" + task.id);
+    } else {
+      this._removesTaskDto.remove("" + task.id);
+      this.router.navigate(["/"]);
+    }
   }
 
   onTaskDoneChanged(task: Partial<TaskDTO>): void {
