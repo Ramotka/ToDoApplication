@@ -1,32 +1,32 @@
-import { BsDropdownConfig } from "ngx-bootstrap/dropdown";
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-import { Router } from "@angular/router";
+import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Inject,
   TemplateRef,
-} from "@angular/core";
-import { Observable } from "rxjs";
-import { map, tap } from "rxjs/operators";
-import { TaskDTO } from "../../../application/ports/secondary/task.dto";
+} from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { TaskDTO } from '../../../application/ports/secondary/task.dto';
 import {
   GETS_ALL_TASK_DTO,
   GetsAllTaskDtoPort,
-} from "../../../application/ports/secondary/gets-all-task.dto-port";
+} from '../../../application/ports/secondary/gets-all-task.dto-port';
 import {
   REMOVES_TASK_DTO,
   RemovesTaskDtoPort,
-} from "../../../application/ports/secondary/removes-task.dto-port";
+} from '../../../application/ports/secondary/removes-task.dto-port';
 import {
   SETS_TASK_DTO,
   SetsTaskDtoPort,
-} from "../../../application/ports/secondary/sets-task.dto-port";
+} from '../../../application/ports/secondary/sets-task.dto-port';
 
 @Component({
-  selector: "lib-tasks-list-view",
-  templateUrl: "./tasks-list-view.component.html",
+  selector: 'lib-tasks-list-view',
+  templateUrl: './tasks-list-view.component.html',
   providers: [
     {
       provide: BsDropdownConfig,
@@ -38,10 +38,10 @@ import {
 })
 export class TasksListViewComponent {
   tasksList$: Observable<TaskDTO[]> = this._getsAllTaskDto.getAll().pipe(
-    map(
-      (tasksList: TaskDTO[]) =>
-        tasksList.sort((a, b) => a.date - b.date).reverse()
-    )
+    map((tasksList: TaskDTO[]) =>
+      tasksList.sort((a, b) => a.date - b.date).reverse()
+    ),
+    tap((tasksList: TaskDTO[]) => this.goHome(tasksList))
   );
 
   constructor(
@@ -53,12 +53,8 @@ export class TasksListViewComponent {
   ) {}
 
   onDeleteTaskClicked(task: Partial<TaskDTO>, tasksList: TaskDTO[]): void {
-    if (tasksList.length > 1) {
-      this._removesTaskDto.remove("" + task.id);
-    } else {
-      this._removesTaskDto.remove("" + task.id);
-      this.router.navigate(["/"]);
-    }
+    this._removesTaskDto.remove('' + task.id);
+    this.modalRef?.hide();
   }
 
   onTaskDoneChanged(task: Partial<TaskDTO>): void {
@@ -78,17 +74,18 @@ export class TasksListViewComponent {
   }
 
   modalRef?: BsModalRef;
-  message?: string;
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { class: "modal-md" });
-  }
-
-  confirm(): void {
-    this.modalRef?.hide();
+    this.modalRef = this.modalService.show(template, { class: 'modal-md' });
   }
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  goHome(tasksList: TaskDTO[]): void {
+    if (tasksList.length < 1) {
+      this.router.navigate(['/']);
+    }
   }
 }
