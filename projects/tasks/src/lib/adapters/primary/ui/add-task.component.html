@@ -1,11 +1,27 @@
-<div class="pt-5">
-    <form class="form-floating" [formGroup]="createTask" (ngSubmit)="onCreateTaskSubmited(createTask)">
-        
-        <input class="form-control" type="text" formControlName="task" placeholder="Write your task here" id="floatingTextarea2" style="height: 100px; max-width: 350px">
-            <label for="floatingTextarea2">Write your task here</label>
-        
-        <input class="btn bg-special text-white mt-4 me-4" type="submit" value="Add task" [disabled]="createTask.invalid">
-        <a class="btn text-dark bg-white border-dark mt-4" routerLink="/my-list" role="button">Cancel</a>
-    </form>
+<div *ngIf="showAddBox; else template">
+
+    <div class="pt-5">
+        <form class="form-floating" [formGroup]="createTask" (ngSubmit)="onCreateTaskSubmited(createTask)">
+            
+            <input class="form-control" type="text" formControlName="task" placeholder="Write your task here" id="floatingTextarea2" style="height: 100px; max-width: 350px">
+                <label for="floatingTextarea2">Write your task here</label>
+            
+            <input class="btn bg-special text-white mt-4 me-4" type="submit" value="Add task" [disabled]="createTask.invalid">
+            <button class="btn text-dark bg-white border-dark mt-4" (click)="onCancelClicked(showAddBox)">Cancel</button>
+        </form>
+    </div>
+
 </div>
+<ng-template #template>
+    <button class="btn bg-special text-white mt-5" (click)="onAddTaskButtonClicked(showAddBox)">Add task</button>
+</ng-template>
+
+
+
+
+
+
+
+
+
 

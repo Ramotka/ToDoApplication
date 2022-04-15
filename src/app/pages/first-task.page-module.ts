@@ -8,6 +8,7 @@ import { AddTaskComponentModule } from '../../../projects/tasks/src/lib/adapters
 import { FirebaseTasksServiceModule } from '../../../projects/tasks/src/lib/adapters/secondary/infrastructure/firebase-tasks.service-module';
 import { PhotosListComponentModule } from '../../../projects/photos/src/lib/adapters/primary/ui/photos-list.component-module';
 import { FirebasePhotosServiceModule } from '../../../projects/photos/src/lib/adapters/secondary/infrastructure/firebase-photos.service-module';
+import { AddFirstTaskComponentModule } from '../../../projects/tasks/src/lib/adapters/primary/ui/add-first-task.component-module';
 
 @NgModule({ imports: [CommonModule, 
       RouterModule.forChild([
@@ -21,7 +22,8 @@ import { FirebasePhotosServiceModule } from '../../../projects/photos/src/lib/ad
   AddTaskComponentModule,
   FirebaseTasksServiceModule,
   PhotosListComponentModule,
-  FirebasePhotosServiceModule
+  FirebasePhotosServiceModule,
+  AddFirstTaskComponentModule
 ],
   	declarations: [FirstTaskPage],
   	providers: [],

@@ -12,12 +12,12 @@ import {
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'lib-add-task',
-  templateUrl: './add-task.component.html',
+  selector: 'lib-add-first-task',
+  templateUrl: './add-first-task.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddTaskComponent {
+export class AddFirstTaskComponent {
   readonly createTask: FormGroup = new FormGroup({
     task: new FormControl('', [Validators.required]),
   });
@@ -27,16 +27,6 @@ export class AddTaskComponent {
     private router: Router
   ) {}
 
-  showAddBox: boolean = false;
-
-  onAddTaskButtonClicked(showAddBox: boolean) {
-    this.showAddBox = true;
-  }
-
-  onCancelClicked(showAddBox: boolean) {
-    this.showAddBox = false;
-  }
-
   onCreateTaskSubmited(createTask: FormGroup): void {
     if (createTask.invalid) {
       return;
@@ -45,7 +35,7 @@ export class AddTaskComponent {
       name: createTask?.get('task')?.value,
       date: new Date().getTime(),
     });
+    this.router.navigate(['/my-list']);
     this.createTask.reset();
-    this.showAddBox = false;
   }
 }
